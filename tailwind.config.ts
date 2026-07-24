@@ -14,6 +14,15 @@ const config = {
       backgroundImage: {
 				"home-hero-img": "url('/assets/home/desktop/image-hero.jpg')",
 			},
+      keyframes: {
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 1.6s ease-in-out infinite",
+      },
     },
   },
 } satisfies Config

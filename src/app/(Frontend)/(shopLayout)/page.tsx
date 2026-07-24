@@ -5,7 +5,6 @@ import { urlFor } from "@/utils/sanity-client";
 export default async function Home() {
 	const featuredProduct = await getFeaturedProduct();
 	const product = featuredProduct[0].selectProduct;
-	console.log(featuredProduct[0]);
 
 	return (
 		<section id="hero" className="h-[650px]">

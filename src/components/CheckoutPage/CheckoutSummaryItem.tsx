@@ -1,3 +1,4 @@
+import ResponsiveImage from "../UI/ResponsiveImage";
 import { urlFor } from "@/utils/sanity-client";
 
 export type Props = {
@@ -12,10 +13,10 @@ function CheckoutSummaryItem(props: Props) {
 	return (
 		<div className="flex items-start gap-3">
 			<div className="w-14 h-14">
-				<img
+				<ResponsiveImage
+					className="w-full h-full rounded-lg"
+					imgClassName="object-cover w-full h-full object-center"
 					src={urlFor(image).url()}
-					alt=""
-					className="rounded-lg object-cover w-full h-full object-center"
 				/>
 			</div>
 			<div className="font-semibold flex grow justify-between items-start">

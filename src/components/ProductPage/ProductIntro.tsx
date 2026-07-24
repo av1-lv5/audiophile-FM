@@ -1,6 +1,7 @@
 import type { Product } from "@/types/product";
 
 import AddToCart from "./AddToCart";
+import ResponsiveImage from "../UI/ResponsiveImage";
 import { urlFor } from "@/utils/sanity-client";
 
 export type Props = {
@@ -9,7 +10,6 @@ export type Props = {
 
 function ProductIntro(props: Props) {
 	const { product } = props;
-	console.log("product", product.productImage.desktop.asset._ref);
 
 	return (
 		<section id="product-intro">
@@ -17,33 +17,27 @@ function ProductIntro(props: Props) {
 			<div className="container mx-auto px-6 my-12 flex flex-col gap-10 items-center sm:flex-row lg:gap-20 lg:px-20">
 				{/* Image container */}
 				<div className="w-full">
-					<picture>
-						<source
-							srcSet={urlFor(
-								product.productImage.desktop.asset
-							).url()}
-							media="(min-width: 1024px)"
-							width={1080}
-							height={1120}
-						/>
-						<source
-							srcSet={urlFor(
-								product.productImage.tablet.asset
-							).url()}
-							media="(min-width: 640px)"
-							width={562}
-							height={960}
-						/>
-						<img
-							src={urlFor(
-								product.productImage.mobile.asset
-							).url()}
-							alt=""
-							className="rounded-xl"
-							width={654}
-							height={654}
-						/>
-					</picture>
+					<ResponsiveImage
+						className="rounded-xl"
+						imgClassName="rounded-xl"
+						src={urlFor(product.productImage.mobile.asset).url()}
+						width={654}
+						height={654}
+						sources={[
+							{
+								srcSet: urlFor(
+									product.productImage.desktop.asset
+								).url(),
+								media: "(min-width: 1024px)",
+							},
+							{
+								srcSet: urlFor(
+									product.productImage.tablet.asset
+								).url(),
+								media: "(min-width: 640px)",
+							},
+						]}
+					/>
 				</div>
 				<div className="flex gap-5 flex-col sm:max-w-[55%] lg:max-w-[45%]">
 					{product.new && (
