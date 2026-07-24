@@ -5,9 +5,9 @@ import CommonHero from "@/components/CategoryPage/CommonHero";
 // types
 import { ProductCategories } from "@/types/productCategories";
 type Props = {
-	params: {
+	params: Promise<{
 		category: ProductCategories;
-	};
+	}>;
 };
 
 // READ: https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamicparams
@@ -22,8 +22,8 @@ export async function generateStaticParams() {
 	}));
 }
 
-function CategoryPage({ params }: Props) {
-	const { category } = params;
+async function CategoryPage({ params }: Props) {
+	const { category } = await params;
 
 	return (
 		<>

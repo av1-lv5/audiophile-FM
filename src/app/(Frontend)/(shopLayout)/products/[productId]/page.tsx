@@ -6,7 +6,7 @@ import { Product } from "@/types/product";
 
 // Types
 export type Props = {
-	params: { productId: string };
+	params: Promise<{ productId: string }>;
 };
 
 // READ: https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamicparams
@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 }
 
 async function ProductPage({ params }: Props) {
-	const product = await getProduct(params.productId);
+	const { productId } = await params;
+	const product = await getProduct(productId);
 	const currentProduct = product[0];
 	return (
 		<main>
